@@ -31,18 +31,20 @@ import "proto/net.proto";
 package pblczero;
 
 message State {
-  optional fixed64 our_pawns = 1;
-  optional fixed64 our_knights = 2;
-  optional fixed64 our_bishops = 3;
-  optional fixed64 our_rooks = 4;
-  optional fixed64 our_queens = 5;
-  optional fixed64 our_king = 6;
-  optional fixed64 their_pawns = 7;
-  optional fixed64 their_knights = 8;
-  optional fixed64 their_bishops = 9;
-  optional fixed64 their_rooks = 10;
-  optional fixed64 their_queens = 11;
-  optional fixed64 their_king = 12;
+  repeated uint32 white_pawns = 1 [packed=true];
+  repeated uint32 white_knights = 2 [packed=true];
+  repeated uint32 white_bishops = 3 [packed=true];
+  repeated uint32 white_rooks = 4 [packed=true];
+  repeated uint32 white_queens = 5 [packed=true];
+  optional uint32 white_king = 6;
+
+  repeated uint32 black_pawns = 7 [packed=true];
+  repeated uint32 black_knights = 8 [packed=true];
+  repeated uint32 black_bishops = 9 [packed=true];
+  repeated uint32 black_rooks = 10 [packed=true];
+  repeated uint32 black_queens = 11 [packed=true];
+  optional uint32 black_king = 12;
+
   optional uint32 repetitions = 13;
   optional uint32 us_ooo = 14;
   optional uint32 us_oo = 15;
