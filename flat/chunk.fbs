@@ -1,0 +1,70 @@
+namespace flatlczero;
+
+
+enum Side : uint8 {
+  White,
+  Black,
+}
+
+enum Result : uint8 {
+  White,
+  Black,
+  Draw,
+}
+
+enum PieceType : uint8 {
+  Pawn,
+  Knight,
+  Bishop,
+  Rook,
+  Queen,
+  King,
+}
+
+table Pieces {
+  // 0 is a1, 1 is a2, ..., 63 is h8
+  indices:[uint8];
+  types:[PieceType];
+}
+
+table Position {
+  white:Pieces;
+  black:Pieces;
+
+  repetitions:uint8;
+  us_ooo:bool;
+  us_oo:bool;
+  them_ooo:bool;
+  them_oo:bool;
+  side_to_move:Side;
+  rule_50:uint8;
+}
+
+table Policy {
+  index:[uint16];
+  probability:[float32];
+}
+
+table Evaluation {
+  // Value after search
+  root_q:float32;
+  best_q:float32;
+  // Draw probability after search
+  root_d:float32;
+  best_d:float32;
+  // Network value
+  root_v:float32;
+}
+
+table State {
+  position:Position; 
+  policy:Policy; 
+  evaluation:Evaluation; 
+}
+
+table Game {
+  states:[State];
+  winner:Result;
+}
+
+root_type Game;
